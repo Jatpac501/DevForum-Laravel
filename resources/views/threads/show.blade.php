@@ -126,7 +126,7 @@
                                 <h4 class="mb-6 text-xl font-semibold text-gray-800">Закрепленные комментарии</h4>
                                 @foreach ($commentsPin as $comment)
                                     <div class="p-4 mb-6 border border-gray-200 rounded-lg bg-gray-50"
-                                        x-data="{ isEditing: false, imageInput: null }">
+                                        x-data="{ isEditing: false }">
                                         <div class="d-flex justify-content-between align-items-center mb-2">
                                             @if ($comment->is_pin)
                                                 <div class="text-gray-500 text-sm">Закрепленный комментарий</div>
@@ -247,7 +247,7 @@
                             <h4 class="mb-6 text-xl font-semibold text-gray-800">Комментарии</h4>
                             @foreach ($thread->comments as $comment)
                                 <div class="p-4 mb-6 border border-gray-200 rounded-lg bg-gray-50"
-                                    x-data="{ isEditing: false, imageInput: null }">
+                                    x-data="{ isEditing: false }">
                                     <div class="d-flex justify-content-between align-items-center mb-2">
                                         @if ($comment->is_pin)
                                             <div class="text-gray-500 text-sm">Закрепленный комментарий</div>
@@ -323,7 +323,7 @@
                                                     class="fa-regular fa-pen-to-square" style="color: #ffffff;"></i>
                                             </x-primary-button>
                                         @endif
-                                        @if ((auth()->check() && auth()->user()->id === $thread->user_id) || auth()->user()->role === 'admin')
+                                        @if (auth()->check() && (auth()->user()->id === $thread->user_id || auth()->user()->role === 'admin'))
                                             <form method="POST" action="{{ route('comments.remove', $comment) }}">
                                                 @csrf
                                                 @if ($comment->is_removed)
