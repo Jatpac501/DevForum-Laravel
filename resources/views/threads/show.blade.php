@@ -204,7 +204,7 @@
                                                         style="color: #ffffff;"></i>
                                                 </x-primary-button>
                                             @endif
-                                            @if ((auth()->check() && auth()->user()->id === $thread->user_id) || auth()->user()->role === 'admin')
+                                            @if (auth()->check() && (auth()->user()->id === $thread->user_id || auth()->user()->role === 'admin'))
                                                 <form method="POST"
                                                     action="{{ route('comments.remove', $comment) }}">
                                                     @csrf
