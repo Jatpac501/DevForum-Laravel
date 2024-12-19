@@ -70,6 +70,7 @@
                                 </div>
                             @endforeach
                         </div>
+                        {{ $threads->links() }}
                     @else
                         <p class="text-gray-600">Пока нет ни одного треда. <a
                                 href="{{ route('threads.create', $category) }}" class="text-blue-500">Создать первый
