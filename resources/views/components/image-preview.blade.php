@@ -1,6 +1,7 @@
 <div x-data="{ modalOpen: false, imageUrl: '', imageInfo: null }" class="inline-block" @keydown.escape.window="modalOpen = false">
     @if ($imagePath)
-        <img src="{{ asset($imagePath) }}" alt="Изображение" style="max-width: {{ $maxWidth }}; cursor: pointer;"
+        <img src="{{ asset('storage/' . $imagePath) }}" alt="Изображение"
+            style="max-width: {{ $maxWidth }}; cursor: pointer;"
             @click="modalOpen = true; imageUrl = $el.src; fetchImageInfo()" class="rounded-lg">
     @endif
 
