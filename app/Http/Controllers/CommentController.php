@@ -25,7 +25,7 @@ class CommentController extends Controller
             'thread_id' => $thread->id,
             'image_path' => $uploadImage
         ]);
-        return back();
+        return redirect()->route('threads.show', $thread);
     }
 
     public function update(Answer $comment, Request $request)
@@ -45,18 +45,18 @@ class CommentController extends Controller
             'image_path' => $uploadImage
         ]);
 
-        return back();
+        return redirect()->route('threads.show', $comment->thread);
     }
 
     public function remove(Answer $comment)
     {
         $comment->remove();
-        return back();
+        return redirect()->route('threads.show', $comment->thread);
     }
 
     public function pin(Answer $comment)
     {
         $comment->pin();
-        return back();
+        return redirect()->route('threads.show', $comment->thread);
     }
 }

@@ -114,19 +114,19 @@ class ThreadController extends Controller
     public function remove(Thread $thread)
     {
         $thread->remove();
-        return back();
+        return redirect()->route('threads.show', $thread);
     }
     // и этого
     public function restore(Thread $thread)
     {
         $thread->restore();
-        return back();
+        return redirect()->route('threads.show', $thread);
     }
 
     public function pin(Thread $thread)
     {
         $thread->pin();
-        return back();
+        return redirect()->route('threads.show', $thread);
         
     }
 }
