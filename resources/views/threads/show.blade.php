@@ -40,7 +40,7 @@
                                 </div>
                                 @if ($thread->image_path)
                                     <div class="mt-4">
-                                        <x-image-preview :imagePath="$thread->image_path" maxWidth="60dvw" />
+                                        <x-image-preview :imagePath="$thread->image_path" maxWidth="20dvw" />
                                     </div>
                                 @endif
                                 <div class="flex gap-3 flex-col sm:flex-row">
@@ -126,7 +126,7 @@
                                 <h4 class="mb-6 text-xl font-semibold text-gray-800">Закрепленные комментарии</h4>
                                 @foreach ($commentsPin as $comment)
                                     <div class="p-4 mb-6 border border-gray-200 rounded-lg bg-gray-50"
-                                        x-data="{ isEditing: false, commentBody: '{{ $comment->body }}' }">
+                                        x-data="{ isEditing: false, imageInput: null }">
                                         <div class="d-flex justify-content-between align-items-center mb-2">
                                             @if ($comment->is_pin)
                                                 <div class="text-gray-500 text-sm">Закрепленный комментарий</div>
@@ -159,13 +159,13 @@
                                                     enctype="multipart/form-data" class="d-flex flex-column gap-2">
                                                     @csrf
                                                     @method('PUT')
-                                                    <x-text-area x-model="commentBody" name="body" required
+                                                    <x-text-area :value="$comment->body" name="body" required
                                                         class="w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></x-text-area>
-                                                    <div class="mt-4">
-                                                        <x-file-input id="image" class="w-full text-black"
-                                                            name="image" placeholder="Файл не выбран"
-                                                            buttonText="Выберите изображение" accept="image/*" />
-                                                    </div>
+                                                    @if ($comment->image_path)
+                                                        <div class="mr-4 mt-4">
+                                                            <x-image-preview :imagePath="$comment->image_path" maxWidth="100px" />
+                                                        </div>
+                                                    @endif
                                                     <div class="d-flex mt-2 gap-2">
                                                         <x-primary-button
                                                             class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline">Сохранить</x-primary-button>
@@ -247,7 +247,7 @@
                             <h4 class="mb-6 text-xl font-semibold text-gray-800">Комментарии</h4>
                             @foreach ($thread->comments as $comment)
                                 <div class="p-4 mb-6 border border-gray-200 rounded-lg bg-gray-50"
-                                    x-data="{ isEditing: false, commentBody: '{{ $comment->body }}' }">
+                                    x-data="{ isEditing: false, imageInput: null }">
                                     <div class="d-flex justify-content-between align-items-center mb-2">
                                         @if ($comment->is_pin)
                                             <div class="text-gray-500 text-sm">Закрепленный комментарий</div>
@@ -280,13 +280,13 @@
                                                 enctype="multipart/form-data" class="d-flex flex-column gap-2">
                                                 @csrf
                                                 @method('PUT')
-                                                <x-text-area x-model="commentBody" name="body" required
+                                                <x-text-area :value="$comment->body" name="body" required
                                                     class="w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></x-text-area>
-                                                <div class="mt-4">
-                                                    <x-file-input id="image" class="w-full text-black"
-                                                        name="image" placeholder="Файл не выбран"
-                                                        buttonText="Выберите изображение" accept="image/*" />
-                                                </div>
+                                                @if ($comment->image_path)
+                                                    <div class="mr-4 mt-4">
+                                                        <x-image-preview :imagePath="$comment->image_path" maxWidth="100px" />
+                                                    </div>
+                                                @endif
                                                 <div class="d-flex mt-2 gap-2">
                                                     <x-primary-button
                                                         class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline">Сохранить</x-primary-button>
