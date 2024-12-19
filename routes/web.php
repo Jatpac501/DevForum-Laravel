@@ -29,7 +29,7 @@ Route::middleware('auth', UserMiddleware::class)->group(function () {
 Route::prefix('comments')->middleware('auth', UserMiddleware::class)->group(function () {
     Route::post('/{thread}', [CommentController::class, 'store'])->name('comments.store');
     Route::put('/{comment}', [CommentController::class, 'update'])->name('comments.update');
-    Route::patch('/{comment}', [CommentController::class, 'update'])->name('comments.update');
+    // Route::patch('/{comment}', [CommentController::class, 'update'])->name('comments.update');
     Route::delete('/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
     Route::post('{comment}/remove', [CommentController::class, 'remove'])->name('comments.remove');
     Route::post('{comment}/pin', [CommentController::class, 'pin'])->name('comments.pin');
