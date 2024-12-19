@@ -19,7 +19,7 @@ Route::middleware('auth', UserMiddleware::class)->group(function () {
     Route::post('{category}/threads/create', [ThreadController::class, 'store'])->name('threads.store');
     Route::get('/threads/{thread}/edit', [ThreadController::class, 'edit'])->name('threads.edit');
     Route::put('/threads/{thread}/update', [ThreadController::class, 'update'])->name('threads.update');
-    Route::patch('/threads/{thread}/update', [ThreadController::class, 'update'])->name('threads.update');
+    // Route::patch('/threads/{thread}/update', [ThreadController::class, 'update'])->name('threads.update');
     Route::post('/threads/{thread}/remove', [ThreadController::class, 'remove'])->name('threads.remove');
     Route::post('/threads/{thread}/restore', [ThreadController::class, 'restore'])->name('threads.restore');
     Route::post('/threads/{thread}/pin', [ThreadController::class, 'pin'])->name('threads.pin');
