@@ -29,7 +29,7 @@ class MarkdownText extends Component
         $html = preg_replace('/_(.+?)_/', '<i>$1</i>', $html);
 
         // Замена ссылок \[text\](url)
-        $html = preg_replace('/\[([^\]]+)\]\(([^)]+)\)/', '<a href="$2">$1</a>', $html);
+        $html = preg_replace('/\[([^\]]+)\]\(([^)]+)\)/', '<a class="underline" href="$2">$1</a>', $html);
 
         // Замена маркированных списков
         $html = preg_replace('/^(\s*)\* (.*)$/m', '$1<li>$2</li>', $html);
